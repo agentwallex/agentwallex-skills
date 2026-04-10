@@ -1,23 +1,44 @@
 ---
-name: send-payment
-description: Send USDC or USDT to an address. Use when you or the user wants to send, transfer, pay, or move funds from an agent.
+name: send
+description: Send USDC or USDT from an agent to a recipient address. Use when you or the user wants to send, transfer, pay, or move funds from an agent.
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
   - Bash(npx @agentwallex/cli@0.1.0 status*)
   - Bash(npx @agentwallex/cli@0.1.0 balance *)
-  - Bash(npx @agentwallex/cli@0.1.0 transfer *)
+  - Bash(npx @agentwallex/cli@0.1.0 send *)
+  - Bash(npx @agentwallex/cli@0.1.0 agents list*)
 ---
 
-# Send Payment Skill
+# Send Skill
 
 Send USDC or USDT from an agent wallet to a recipient address on a supported blockchain.
 
 ## Prerequisites
 
-- AgentWallex must be configured (run the `setup-wallet` skill first if not connected).
+- AgentWallex must be configured (run the `setup` skill first if not connected).
 - The agent must have sufficient balance on the target chain and token.
-- You need: agent ID, recipient address, amount, token, and chain.
+- You need: agent ID, recipient address, amount, chain, and token.
+
+## Interactive Mode
+
+All `awx` commands support **interactive mode**. Running a command without arguments enters a step-by-step guided flow:
+
+```bash
+# Direct mode (all params specified)
+awx send --agent agt_a1b2c3d4 --to 0x1a2b...3c4d --chain base --token USDC --amount 10
+
+# Interactive mode (guided prompts)
+awx send
+```
+
+In interactive mode, you will be prompted for:
+- Agent ID (select from a list or type manually)
+- Chain selection (base, ethereum, bsc, tron, polygon, solana)
+- Token (USDC / USDT)
+- Recipient address
+- Amount
+- Confirmation before sending
 
 ## Supported Chains & Tokens
 
@@ -43,19 +64,19 @@ Send USDC or USDT from an agent wallet to a recipient address on a supported blo
 
 3. **Validate inputs.** Check all inputs against the validation rules below. Do NOT proceed if any validation fails.
 
-4. **Check the agent's balance.** Run `npx @agentwallex/cli@0.1.0 balance <agent-id>` to confirm the available balance covers the payment amount. If insufficient, inform the user and suggest the `fund-agent` or `deposit` skill.
+4. **Check the agent's balance.** Run `npx @agentwallex/cli@0.1.0 balance <agent-id>` to confirm the available balance covers the payment amount. If insufficient, inform the user and suggest the `fund` or `topup` skill.
 
 5. **Confirm with the user.** Before sending, display a summary: agent, recipient, amount, token, and chain. Ask the user to confirm. Do NOT send without explicit user confirmation.
 
-6. **Send the payment.** Run `npx @agentwallex/cli@0.1.0 transfer <agent-id> --to <address> --amount <amount> --token <token> --chain <chain>`.
+6. **Send the payment.** Run `npx @agentwallex/cli@0.1.0 send <agent-id> --to <address> --amount <amount> --token <token> --chain <chain>`.
 
-7. **Report the result.** Display the transaction ID, status, and tx hash (when available). If the transaction requires approval (due to a spending policy), inform the user and suggest the `approve-transaction` skill.
+7. **Report the result.** Display the transaction ID, status, and tx hash (when available). If the transaction requires approval (due to a spending policy), inform the user and suggest the `policy` skill.
 
 ## Input Validation
 
 | Field     | Rule                                                              | Example                                      |
 |-----------|-------------------------------------------------------------------|----------------------------------------------|
-| Agent ID  | Non-empty string                                                  | `agent-a1b2c3d4`                             |
+| Agent ID  | Non-empty string                                                  | `agt_a1b2c3d4`                               |
 | Address   | EVM: starts with `0x`, 42 chars. Tron: starts with `T`, 34 chars. Solana: Base58, 32-44 chars | `0x1234...abcd` |
 | Amount    | Positive number, up to 2 decimal places                           | `10.50`                                      |
 | Token     | One of: `USDC`, `USDT`                                           | `USDC`                                       |
@@ -70,34 +91,32 @@ Send USDC or USDT from an agent wallet to a recipient address on a supported blo
 
 | Command                                                                                              | Description                    |
 |------------------------------------------------------------------------------------------------------|--------------------------------|
-| `npx @agentwallex/cli@0.1.0 transfer <agent-id> --to <addr> --amount <amt> --token <tkn>`           | Send a payment                 |
-| `npx @agentwallex/cli@0.1.0 transfer <agent-id> --to <addr> --amount <amt> --token <tkn> --chain <chain>` | Send on a specific chain |
-| `npx @agentwallex/cli@0.1.0 transfer <agent-id> --to <addr> --amount <amt> --json`                  | Send with JSON output          |
+| `npx @agentwallex/cli@0.1.0 send <agent-id> --to <addr> --amount <amt> --token <tkn>`               | Send a payment                 |
+| `npx @agentwallex/cli@0.1.0 send <agent-id> --to <addr> --amount <amt> --chain <chain>`             | Send on a specific chain       |
+| `npx @agentwallex/cli@0.1.0 send <agent-id> --to <addr> --amount <amt> --json`                      | Send with JSON output          |
 | `npx @agentwallex/cli@0.1.0 balance <agent-id>`                                                     | Check balance before sending   |
 
 ## Example Session
 
-**User:** Send 25 USDC from agent-a1b2c3d4 to 0xRecipient1234567890abcdef1234567890abcdef
+**User:** Send 25 USDC from agt_a1b2c3d4 to 0xRecipient1234567890abcdef1234567890abcdef
 
 **Assistant:**
 
 Let me check the agent's balance first:
 
 ```bash
-npx @agentwallex/cli@0.1.0 balance agent-a1b2c3d4
+npx @agentwallex/cli@0.1.0 balance agt_a1b2c3d4
 ```
 
 Output:
 ```
-  Chain   Token   Available
-  base    USDC    150.00
+  Chain   Available
+  base    150.00
 ```
 
-The agent has 150.00 USDC available on Base, which is sufficient for a 25.00 USDC transfer.
+The agent has 150.00 USDC available on Base. Here is the payment summary:
 
-Here is the payment summary:
-
-- **From:** agent-a1b2c3d4
+- **From:** agt_a1b2c3d4
 - **To:** 0xRecipient1234567890abcdef1234567890abcdef
 - **Amount:** 25.00 USDC
 - **Chain:** base
@@ -109,32 +128,32 @@ Shall I proceed?
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.0 transfer agent-a1b2c3d4 --to 0xRecipient1234567890abcdef1234567890abcdef --amount 25 --token USDC --chain base
+npx @agentwallex/cli@0.1.0 send agt_a1b2c3d4 --to 0xRecipient1234567890abcdef1234567890abcdef --amount 25 --token USDC --chain base
 ```
 
 Output:
 ```
 Transfer submitted.
 
-  Transaction ID: tx-e5f6g7h8
-  Amount:         25.00 USDC
-  To:             0xRecipient...abcdef
-  Chain:          base
-  Status:         pending
-  TX Hash:        0xabc123...
+  Ledger ID:  tx-e5f6g7h8
+  Amount:     25.00
+  To:         0xRecipient...abcdef
+  Chain:      base
+  Status:     pending
+  TX Hash:    0xabc123...
 ```
 
-Payment of 25.00 USDC has been submitted. Transaction ID is `tx-e5f6g7h8`. The transfer is currently pending on-chain confirmation.
+Payment of 25.00 USDC has been submitted. The transfer is currently pending on-chain confirmation.
 
 ## Troubleshooting
 
 | Problem                           | Solution                                                                |
 |-----------------------------------|-------------------------------------------------------------------------|
-| `Insufficient balance`            | Fund the agent using the `fund-agent` or `deposit` skill.               |
+| `Insufficient balance`            | Fund the agent using the `fund` or `topup` skill.                       |
 | `Invalid address format`          | Check the address matches the chain's format (0x for EVM, T for Tron).  |
-| `Transaction requires approval`   | A spending policy requires approval. Use the `approve-transaction` skill.|
+| `Transaction requires approval`   | A spending policy requires approval. Use the `policy` skill.            |
 | `Transaction failed`              | Check the error message. Common causes: insufficient gas, network congestion. |
-| `Not connected`                   | Run the `setup-wallet` skill to configure your API key.                 |
+| `Not connected`                   | Run the `setup` skill to configure your API key.                        |
 
 ## Notes
 

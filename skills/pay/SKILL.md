@@ -1,6 +1,6 @@
 ---
-name: pay-for-service
-description: Make a paid API request via x402 or MPP protocol. Use when you or the user wants to call a paid API, make an x402 request, pay for a service, or access a paid endpoint.
+name: pay
+description: Make paid API calls via x402 or MPP protocol. Use when you or the user wants to call a paid API, make an x402 request, pay for a service, or access a paid endpoint.
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
@@ -9,15 +9,19 @@ allowed-tools:
   - Bash(curl *)
 ---
 
-# Pay for Service Skill
+# Pay Skill
 
 Make paid API requests using the x402 or MPP (Machine Payments Protocol) protocols. When an HTTP endpoint returns a 402 Payment Required response, AgentWallex can automatically handle the payment and retry the request.
 
 ## Prerequisites
 
-- AgentWallex must be configured (run the `setup-wallet` skill first if not connected).
+- AgentWallex must be configured (run the `setup` skill first if not connected).
 - The agent must have sufficient balance to cover the payment.
 - The target endpoint must support x402 or MPP protocol.
+
+## Interactive Mode
+
+All `awx` commands support **interactive mode**. Running a command without arguments enters a step-by-step guided flow. For the pay skill, the CLI guides you through identifying the paid endpoint and selecting the agent to pay with.
 
 ## How x402 Works
 
@@ -54,39 +58,18 @@ Make paid API requests using the x402 or MPP (Machine Payments Protocol) protoco
      -H "X-AGENTWALLEX-API-KEY: <api-key>"
    ```
 
-   Or use the CLI helper:
-
-   ```bash
-   npx @agentwallex/cli@0.1.0 balance <agent-id>
-   ```
-
    The AgentWallex SDK handles the 402 flow automatically when integrated into applications.
 
 5. **Show the response.** Display the paid content returned by the API.
 
 6. **Report the cost.** Show how much was paid and the remaining balance.
 
-## How to Test x402
-
-You can test the x402 flow using a known x402-enabled endpoint:
-
-```bash
-# Step 1: Make a request that returns 402
-curl -s -i "https://example-x402-api.com/paid-endpoint"
-
-# Step 2: The response includes payment requirements
-# HTTP/1.1 402 Payment Required
-# X-Payment-Required: {"amount":"0.01","token":"USDC","chain":"base","recipient":"0x..."}
-
-# Step 3: In a real integration, the AgentWallex SDK handles this automatically
-```
-
 ## Input Validation
 
 | Field    | Rule                                         | Example                              |
 |----------|----------------------------------------------|--------------------------------------|
 | URL      | Valid HTTP/HTTPS URL                          | `https://api.example.com/data`       |
-| Agent ID | Non-empty string                             | `agent-a1b2c3d4`                     |
+| Agent ID | Non-empty string                             | `agt_a1b2c3d4`                       |
 | Method   | One of: GET, POST, PUT, DELETE                | `GET`                                |
 
 - Verify the URL is a valid HTTPS endpoint before making requests.
@@ -102,20 +85,20 @@ curl -s -i "https://example-x402-api.com/paid-endpoint"
 
 ## Example Session
 
-**User:** Call the paid API at https://api.example.com/premium-data using agent-a1b2c3d4
+**User:** Call the paid API at https://api.example.com/premium-data using agt_a1b2c3d4
 
 **Assistant:**
 
 Let me check the agent's balance first:
 
 ```bash
-npx @agentwallex/cli@0.1.0 balance agent-a1b2c3d4
+npx @agentwallex/cli@0.1.0 balance agt_a1b2c3d4
 ```
 
 Output:
 ```
-  Chain   Token   Available
-  base    USDC    150.00
+  Chain   Available
+  base    150.00
 ```
 
 The agent has 150.00 USDC available. Let me test the endpoint:
@@ -146,7 +129,7 @@ import { AgentWallex } from '@agentwallex/sdk';
 
 const aw = new AgentWallex({ apiKey: 'awk_...' });
 const response = await aw.httpClient.get('https://api.example.com/premium-data', {
-  agentId: 'agent-a1b2c3d4',
+  agentId: 'agt_a1b2c3d4',
   enableX402: true,
 });
 ```
@@ -155,10 +138,10 @@ const response = await aw.httpClient.get('https://api.example.com/premium-data',
 
 | Problem                           | Solution                                                                 |
 |-----------------------------------|--------------------------------------------------------------------------|
-| `Insufficient balance`            | Fund the agent using the `fund-agent` or `deposit` skill.                |
+| `Insufficient balance`            | Fund the agent using the `fund` or `topup` skill.                        |
 | `Endpoint does not return 402`    | The endpoint may not support x402. Check with the API provider.          |
 | `Payment rejected by server`      | Verify the agent has sufficient balance on the correct chain and token.  |
-| `Not connected`                   | Run the `setup-wallet` skill to configure your API key.                  |
+| `Not connected`                   | Run the `setup` skill to configure your API key.                         |
 | `Unsupported payment protocol`    | AgentWallex supports x402 and MPP. Other protocols are not supported.    |
 
 ## Notes

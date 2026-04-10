@@ -6,15 +6,14 @@
 
 | Skill | Description |
 |-------|-------------|
-| [setup-wallet](./skills/setup-wallet/SKILL.md) | Configure API key and connect to AgentWallex |
-| [create-agent](./skills/create-agent/SKILL.md) | Create an AI agent with a multi-chain wallet |
-| [check-balance](./skills/check-balance/SKILL.md) | Check agent wallet or main account balances |
-| [send-payment](./skills/send-payment/SKILL.md) | Send USDC/USDT to addresses across 6 chains |
-| [fund-agent](./skills/fund-agent/SKILL.md) | Allocate funds from main account to agent wallets |
-| [set-policy](./skills/set-policy/SKILL.md) | Configure spending limits, approval thresholds, and auto-funding |
-| [approve-transaction](./skills/approve-transaction/SKILL.md) | Review and approve/reject pending transactions |
-| [pay-for-service](./skills/pay-for-service/SKILL.md) | Make paid API requests via x402 or MPP protocols |
-| [deposit](./skills/deposit/SKILL.md) | Get deposit addresses to receive crypto on any chain |
+| [setup](./skills/setup/SKILL.md) | Configure API key and connect to AgentWallex |
+| [agent](./skills/agent/SKILL.md) | Create and manage AI agents with multi-chain wallets |
+| [balance](./skills/balance/SKILL.md) | Check balances for an agent or the main account (by chain + token) |
+| [topup](./skills/topup/SKILL.md) | Get deposit addresses to receive crypto (select chain + token) |
+| [send](./skills/send/SKILL.md) | Send payment from an agent (select chain + token + address + amount) |
+| [fund](./skills/fund/SKILL.md) | Allocate or collect funds between main account and agents |
+| [policy](./skills/policy/SKILL.md) | Set spending limits, approval thresholds, and approve/reject transactions |
+| [pay](./skills/pay/SKILL.md) | Make paid API calls via x402 or MPP protocol |
 
 ## Installation
 
@@ -27,6 +26,16 @@ npx skills add agentwallex/agentwallex-skills
 ## Usage
 
 Skills are automatically available once installed. The agent will use them when relevant tasks are detected.
+
+All `awx` commands support **interactive mode** -- running a command without arguments enters a step-by-step guided flow. For example:
+
+```bash
+# Direct mode (all params specified)
+awx send --agent agt_xxx --to 0x1a2b --chain base --token USDC --amount 10
+
+# Interactive mode (guided prompts)
+awx send
+```
 
 **Examples:**
 

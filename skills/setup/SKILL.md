@@ -1,5 +1,5 @@
 ---
-name: setup-wallet
+name: setup
 description: Configure API key and connect to AgentWallex. Use when you or the user wants to set up, configure, connect, or initialize AgentWallex, or when any operation fails with authentication errors.
 user-invocable: true
 disable-model-invocation: false
@@ -8,7 +8,7 @@ allowed-tools:
   - Bash(npx @agentwallex/cli@0.1.0 status*)
 ---
 
-# Setup Wallet Skill
+# Setup Skill
 
 Configure your AgentWallex API key and verify the connection. This is the first step before using any other AgentWallex skill.
 
@@ -17,6 +17,18 @@ Configure your AgentWallex API key and verify the connection. This is the first 
 - Node.js 18+ installed
 - An AgentWallex account at https://app.agentwallex.com (production) or https://app-sandbox.agentwallex.com (sandbox)
 - An API key from the dashboard (starts with `awk_`)
+
+## Interactive Mode
+
+All `awx` commands support **interactive mode**. Running a command without arguments enters a step-by-step guided flow:
+
+```bash
+# Direct mode (all params specified)
+awx login --api-key awk_sk_live_abc123
+
+# Interactive mode (guided prompts)
+awx login
+```
 
 ## Steps
 
