@@ -1,0 +1,7 @@
+{
+  "name": "agentwallex-skills",
+  "private": true,
+  "scripts": {
+    "bump-awx": "node scripts/bump-awx.js"
+  }
+}
