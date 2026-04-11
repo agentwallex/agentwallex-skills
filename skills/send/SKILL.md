@@ -4,10 +4,10 @@ description: Send USDC or USDT from an agent to a recipient address. Use when yo
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.0 status*)
-  - Bash(npx @agentwallex/cli@0.1.0 balance *)
-  - Bash(npx @agentwallex/cli@0.1.0 send *)
-  - Bash(npx @agentwallex/cli@0.1.0 agents list*)
+  - Bash(npx @agentwallex/cli@0.1.1 status*)
+  - Bash(npx @agentwallex/cli@0.1.1 balance *)
+  - Bash(npx @agentwallex/cli@0.1.1 send *)
+  - Bash(npx @agentwallex/cli@0.1.1 agents list*)
 ---
 
 # Send Skill
@@ -53,7 +53,7 @@ In interactive mode, you will be prompted for:
 
 ## Steps
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.0 status` to verify AgentWallex is configured.
+1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status` to verify AgentWallex is configured.
 
 2. **Gather payment details from the user.** You need:
    - **Agent ID** (required): Which agent is sending the payment.
@@ -64,11 +64,11 @@ In interactive mode, you will be prompted for:
 
 3. **Validate inputs.** Check all inputs against the validation rules below. Do NOT proceed if any validation fails.
 
-4. **Check the agent's balance.** Run `npx @agentwallex/cli@0.1.0 balance <agent-id>` to confirm the available balance covers the payment amount. If insufficient, inform the user and suggest the `fund` or `topup` skill.
+4. **Check the agent's balance.** Run `npx @agentwallex/cli@0.1.1 balance <agent-id>` to confirm the available balance covers the payment amount. If insufficient, inform the user and suggest the `fund` or `topup` skill.
 
 5. **Confirm with the user.** Before sending, display a summary: agent, recipient, amount, token, and chain. Ask the user to confirm. Do NOT send without explicit user confirmation.
 
-6. **Send the payment.** Run `npx @agentwallex/cli@0.1.0 send <agent-id> --to <address> --amount <amount> --token <token> --chain <chain>`.
+6. **Send the payment.** Run `npx @agentwallex/cli@0.1.1 send <agent-id> --to <address> --amount <amount> --token <token> --chain <chain>`.
 
 7. **Report the result.** Display the transaction ID, status, and tx hash (when available). If the transaction requires approval (due to a spending policy), inform the user and suggest the `policy` skill.
 
@@ -91,10 +91,10 @@ In interactive mode, you will be prompted for:
 
 | Command                                                                                              | Description                    |
 |------------------------------------------------------------------------------------------------------|--------------------------------|
-| `npx @agentwallex/cli@0.1.0 send <agent-id> --to <addr> --amount <amt> --token <tkn>`               | Send a payment                 |
-| `npx @agentwallex/cli@0.1.0 send <agent-id> --to <addr> --amount <amt> --chain <chain>`             | Send on a specific chain       |
-| `npx @agentwallex/cli@0.1.0 send <agent-id> --to <addr> --amount <amt> --json`                      | Send with JSON output          |
-| `npx @agentwallex/cli@0.1.0 balance <agent-id>`                                                     | Check balance before sending   |
+| `npx @agentwallex/cli@0.1.1 send <agent-id> --to <addr> --amount <amt> --token <tkn>`               | Send a payment                 |
+| `npx @agentwallex/cli@0.1.1 send <agent-id> --to <addr> --amount <amt> --chain <chain>`             | Send on a specific chain       |
+| `npx @agentwallex/cli@0.1.1 send <agent-id> --to <addr> --amount <amt> --json`                      | Send with JSON output          |
+| `npx @agentwallex/cli@0.1.1 balance <agent-id>`                                                     | Check balance before sending   |
 
 ## Example Session
 
@@ -105,7 +105,7 @@ In interactive mode, you will be prompted for:
 Let me check the agent's balance first:
 
 ```bash
-npx @agentwallex/cli@0.1.0 balance agt_a1b2c3d4
+npx @agentwallex/cli@0.1.1 balance agt_a1b2c3d4
 ```
 
 Output:
@@ -128,7 +128,7 @@ Shall I proceed?
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.0 send agt_a1b2c3d4 --to 0xRecipient1234567890abcdef1234567890abcdef --amount 25 --token USDC --chain base
+npx @agentwallex/cli@0.1.1 send agt_a1b2c3d4 --to 0xRecipient1234567890abcdef1234567890abcdef --amount 25 --token USDC --chain base
 ```
 
 Output:

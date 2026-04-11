@@ -4,8 +4,8 @@ description: Create and manage AI agents with multi-chain wallets. Use when you 
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.0 status*)
-  - Bash(npx @agentwallex/cli@0.1.0 agents *)
+  - Bash(npx @agentwallex/cli@0.1.1 status*)
+  - Bash(npx @agentwallex/cli@0.1.1 agents *)
 ---
 
 # Agent Skill
@@ -47,32 +47,32 @@ In interactive mode, you will be prompted for:
 
 ### Creating an Agent
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.0 status`.
+1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status`.
 
 2. **Gather details from the user.** You need:
    - **Name** (required): A descriptive name for the agent (e.g., `research-bot`).
    - **Chain** (required): Which blockchain the agent's wallet will be on.
    - **Description** (optional): What the agent does.
 
-3. **Create the agent.** Run `npx @agentwallex/cli@0.1.0 agents create <name> --chain <chain>`.
+3. **Create the agent.** Run `npx @agentwallex/cli@0.1.1 agents create <name> --chain <chain>`.
 
 4. **Report the result.** Show the agent ID, wallet address, and status.
 
 ### Listing Agents
 
-Run `npx @agentwallex/cli@0.1.0 agents list` to see all agents.
+Run `npx @agentwallex/cli@0.1.1 agents list` to see all agents.
 
 ### Getting Agent Details
 
-Run `npx @agentwallex/cli@0.1.0 agents get <id>` to see full details.
+Run `npx @agentwallex/cli@0.1.1 agents get <id>` to see full details.
 
 ### Deleting an Agent
 
-Run `npx @agentwallex/cli@0.1.0 agents delete <id>`. The CLI will ask for confirmation. Use `-y` to skip.
+Run `npx @agentwallex/cli@0.1.1 agents delete <id>`. The CLI will ask for confirmation. Use `-y` to skip.
 
 ### Suspending an Agent
 
-Run `npx @agentwallex/cli@0.1.0 agents suspend <id>` to temporarily disable an agent.
+Run `npx @agentwallex/cli@0.1.1 agents suspend <id>` to temporarily disable an agent.
 
 ## Input Validation
 
@@ -86,13 +86,13 @@ Run `npx @agentwallex/cli@0.1.0 agents suspend <id>` to temporarily disable an a
 
 | Command                                                                           | Description              |
 |-----------------------------------------------------------------------------------|--------------------------|
-| `npx @agentwallex/cli@0.1.0 agents list`                                         | List all agents          |
-| `npx @agentwallex/cli@0.1.0 agents list --json`                                  | List agents (JSON)       |
-| `npx @agentwallex/cli@0.1.0 agents create <name> --chain <chain>`                | Create a new agent       |
-| `npx @agentwallex/cli@0.1.0 agents create <name> --chain <chain> --description <desc>` | Create with description |
-| `npx @agentwallex/cli@0.1.0 agents get <id>`                                     | Get agent details        |
-| `npx @agentwallex/cli@0.1.0 agents delete <id>`                                  | Delete an agent          |
-| `npx @agentwallex/cli@0.1.0 agents suspend <id>`                                 | Suspend an agent         |
+| `npx @agentwallex/cli@0.1.1 agents list`                                         | List all agents          |
+| `npx @agentwallex/cli@0.1.1 agents list --json`                                  | List agents (JSON)       |
+| `npx @agentwallex/cli@0.1.1 agents create <name> --chain <chain>`                | Create a new agent       |
+| `npx @agentwallex/cli@0.1.1 agents create <name> --chain <chain> --description <desc>` | Create with description |
+| `npx @agentwallex/cli@0.1.1 agents get <id>`                                     | Get agent details        |
+| `npx @agentwallex/cli@0.1.1 agents delete <id>`                                  | Delete an agent          |
+| `npx @agentwallex/cli@0.1.1 agents suspend <id>`                                 | Suspend an agent         |
 
 ## Example Session
 
@@ -101,7 +101,7 @@ Run `npx @agentwallex/cli@0.1.0 agents suspend <id>` to temporarily disable an a
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.0 agents create research-bot --chain base
+npx @agentwallex/cli@0.1.1 agents create research-bot --chain base
 ```
 
 Output:

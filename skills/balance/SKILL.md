@@ -4,9 +4,9 @@ description: Check balances for an agent or the main account, by chain and token
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.0 status*)
-  - Bash(npx @agentwallex/cli@0.1.0 balance *)
-  - Bash(npx @agentwallex/cli@0.1.0 account balance*)
+  - Bash(npx @agentwallex/cli@0.1.1 status*)
+  - Bash(npx @agentwallex/cli@0.1.1 balance *)
+  - Bash(npx @agentwallex/cli@0.1.1 account balance*)
 ---
 
 # Balance Skill
@@ -36,19 +36,19 @@ awx balance
 
 ### Checking Agent Balance
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.0 status`.
+1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status`.
 
-2. **Get the agent ID.** Ask the user which agent to check, or list agents with `npx @agentwallex/cli@0.1.0 agents list`.
+2. **Get the agent ID.** Ask the user which agent to check, or list agents with `npx @agentwallex/cli@0.1.1 agents list`.
 
-3. **Check the balance.** Run `npx @agentwallex/cli@0.1.0 balance <agent-id>`.
+3. **Check the balance.** Run `npx @agentwallex/cli@0.1.1 balance <agent-id>`.
 
 4. **Display results.** Show available balance by chain and token.
 
 ### Checking Main Account Balance
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.0 status`.
+1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status`.
 
-2. **Check the balance.** Run `npx @agentwallex/cli@0.1.0 account balance`.
+2. **Check the balance.** Run `npx @agentwallex/cli@0.1.1 account balance`.
 
 3. **Display results.** Show available, locked, and total deposited amounts.
 
@@ -56,10 +56,10 @@ awx balance
 
 | Command                                                  | Description                    |
 |----------------------------------------------------------|--------------------------------|
-| `npx @agentwallex/cli@0.1.0 balance <agent-id>`         | Check agent balance            |
-| `npx @agentwallex/cli@0.1.0 balance <agent-id> --json`  | Agent balance (JSON)           |
-| `npx @agentwallex/cli@0.1.0 account balance`            | Check main account balance     |
-| `npx @agentwallex/cli@0.1.0 account balance --json`     | Account balance (JSON)         |
+| `npx @agentwallex/cli@0.1.1 balance <agent-id>`         | Check agent balance            |
+| `npx @agentwallex/cli@0.1.1 balance <agent-id> --json`  | Agent balance (JSON)           |
+| `npx @agentwallex/cli@0.1.1 account balance`            | Check main account balance     |
+| `npx @agentwallex/cli@0.1.1 account balance --json`     | Account balance (JSON)         |
 
 ## Example Session
 
@@ -68,7 +68,7 @@ awx balance
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.0 balance agt_a1b2c3d4
+npx @agentwallex/cli@0.1.1 balance agt_a1b2c3d4
 ```
 
 Output:
