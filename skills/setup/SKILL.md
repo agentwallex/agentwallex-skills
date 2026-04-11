@@ -4,9 +4,9 @@ description: Configure API key and connect to AgentWallex. Use when you or the u
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.1 login --api-key * --sandbox*)
-  - Bash(npx @agentwallex/cli@0.1.1 login --api-key *)
-  - Bash(npx @agentwallex/cli@0.1.1 status*)
+  - Bash(npx @agentwallex/cli@latest login --api-key * --sandbox*)
+  - Bash(npx @agentwallex/cli@latest login --api-key *)
+  - Bash(npx @agentwallex/cli@latest status*)
 ---
 
 # Setup Skill
@@ -36,13 +36,13 @@ awx login
 
 ## Steps
 
-1. **Check current connection status.** Run `npx @agentwallex/cli@0.1.1 status` to see if AgentWallex is already configured. If the output shows `connected: true`, you are already set up. If not, proceed to step 2.
+1. **Check current connection status.** Run `npx @agentwallex/cli@latest status` to see if AgentWallex is already configured. If the output shows `connected: true`, you are already set up. If not, proceed to step 2.
 
 2. **Gather the API key from the user.** Ask the user for their AgentWallex API key. The key must start with `awx_`. Do NOT proceed if the key format is invalid.
 
-3. **Log in with the API key.** Run `npx @agentwallex/cli@0.1.1 login --api-key <KEY> --sandbox` for sandbox or `npx @agentwallex/cli@0.1.1 login --api-key <KEY>` for production. The CLI will validate the key and store it locally.
+3. **Log in with the API key.** Run `npx @agentwallex/cli@latest login --api-key <KEY> --sandbox` for sandbox or `npx @agentwallex/cli@latest login --api-key <KEY>` for production. The CLI will validate the key and store it locally.
 
-4. **Verify the connection.** Run `npx @agentwallex/cli@0.1.1 status` to confirm the connection is active. The output should show `connected: true` and display the account name.
+4. **Verify the connection.** Run `npx @agentwallex/cli@latest status` to confirm the connection is active. The output should show `connected: true` and display the account name.
 
 5. **Report the result.** Tell the user whether setup succeeded or failed. If it failed, suggest they check their API key or visit the dashboard to generate a new one.
 
@@ -59,10 +59,10 @@ awx login
 
 | Command                                                          | Description                              |
 |------------------------------------------------------------------|------------------------------------------|
-| `npx @agentwallex/cli@0.1.1 login --api-key <KEY>`              | Authenticate with an API key (production)|
-| `npx @agentwallex/cli@0.1.1 login --api-key <KEY> --sandbox`    | Authenticate with an API key (sandbox)   |
-| `npx @agentwallex/cli@0.1.1 status`                             | Check connection status                  |
-| `npx @agentwallex/cli@0.1.1 status --json`                      | Check status with JSON output            |
+| `npx @agentwallex/cli@latest login --api-key <KEY>`              | Authenticate with an API key (production)|
+| `npx @agentwallex/cli@latest login --api-key <KEY> --sandbox`    | Authenticate with an API key (sandbox)   |
+| `npx @agentwallex/cli@latest status`                             | Check connection status                  |
+| `npx @agentwallex/cli@latest status --json`                      | Check status with JSON output            |
 
 ## Example Session
 
@@ -73,13 +73,13 @@ awx login
 I will configure AgentWallex with your API key in sandbox mode.
 
 ```bash
-npx @agentwallex/cli@0.1.1 login --api-key awx_sk_test_abc123 --sandbox
+npx @agentwallex/cli@latest login --api-key awx_sk_test_abc123 --sandbox
 ```
 
 Login successful. Let me verify the connection:
 
 ```bash
-npx @agentwallex/cli@0.1.1 status
+npx @agentwallex/cli@latest status
 ```
 
 Output:

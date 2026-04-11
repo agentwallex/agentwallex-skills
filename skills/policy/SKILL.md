@@ -4,10 +4,10 @@ description: Set spending limits, approval thresholds, and review pending transa
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.1 status*)
-  - Bash(npx @agentwallex/cli@0.1.1 policies *)
-  - Bash(npx @agentwallex/cli@0.1.1 approvals *)
-  - Bash(npx @agentwallex/cli@0.1.1 agents list*)
+  - Bash(npx @agentwallex/cli@latest status*)
+  - Bash(npx @agentwallex/cli@latest policies *)
+  - Bash(npx @agentwallex/cli@latest approvals *)
+  - Bash(npx @agentwallex/cli@latest agents list*)
 ---
 
 # Policy Skill
@@ -45,7 +45,7 @@ For `approvals reject`, interactive mode prompts for:
 
 ### Creating a Spending Policy
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status`.
+1. **Check connection status.** Run `npx @agentwallex/cli@latest status`.
 
 2. **Gather policy details.** You need:
    - **Agent ID** (required): The agent to apply the policy to.
@@ -55,22 +55,22 @@ For `approvals reject`, interactive mode prompts for:
    - **Approval threshold** (optional): Transactions above this amount require human approval.
    - **Require approval** (optional): Flag to require human approval for all transactions.
 
-3. **Create the policy.** Run `npx @agentwallex/cli@0.1.1 policies create --agent <id> --daily-limit <amt>`.
+3. **Create the policy.** Run `npx @agentwallex/cli@latest policies create --agent <id> --daily-limit <amt>`.
 
 4. **Report the result.** Show the policy ID and configured limits.
 
 ### Listing Policies
 
-Run `npx @agentwallex/cli@0.1.1 policies list` to see all policies.
-Filter by agent: `npx @agentwallex/cli@0.1.1 policies list --agent <id>`.
+Run `npx @agentwallex/cli@latest policies list` to see all policies.
+Filter by agent: `npx @agentwallex/cli@latest policies list --agent <id>`.
 
 ### Reviewing Pending Approvals
 
-1. **List pending approvals.** Run `npx @agentwallex/cli@0.1.1 approvals list --status pending`.
+1. **List pending approvals.** Run `npx @agentwallex/cli@latest approvals list --status pending`.
 
 2. **Approve or reject.** Run:
-   - `npx @agentwallex/cli@0.1.1 approvals approve <id>` to approve.
-   - `npx @agentwallex/cli@0.1.1 approvals reject <id> --note "<reason>"` to reject.
+   - `npx @agentwallex/cli@latest approvals approve <id>` to approve.
+   - `npx @agentwallex/cli@latest approvals reject <id> --note "<reason>"` to reject.
 
 ## Input Validation
 
@@ -87,13 +87,13 @@ Filter by agent: `npx @agentwallex/cli@0.1.1 policies list --agent <id>`.
 
 | Command                                                                                      | Description                     |
 |----------------------------------------------------------------------------------------------|---------------------------------|
-| `npx @agentwallex/cli@0.1.1 policies list`                                                  | List all policies               |
-| `npx @agentwallex/cli@0.1.1 policies list --agent <id>`                                     | List policies for an agent      |
-| `npx @agentwallex/cli@0.1.1 policies create --agent <id> --daily-limit <amt>`               | Create a policy                 |
-| `npx @agentwallex/cli@0.1.1 policies create --agent <id> --daily-limit <amt> --monthly-limit <amt> --max-txn <amt> --approval-threshold <amt>` | Create with all limits |
-| `npx @agentwallex/cli@0.1.1 approvals list --status pending`                                | List pending approvals          |
-| `npx @agentwallex/cli@0.1.1 approvals approve <id>`                                         | Approve a transaction           |
-| `npx @agentwallex/cli@0.1.1 approvals reject <id> --note "<reason>"`                        | Reject a transaction            |
+| `npx @agentwallex/cli@latest policies list`                                                  | List all policies               |
+| `npx @agentwallex/cli@latest policies list --agent <id>`                                     | List policies for an agent      |
+| `npx @agentwallex/cli@latest policies create --agent <id> --daily-limit <amt>`               | Create a policy                 |
+| `npx @agentwallex/cli@latest policies create --agent <id> --daily-limit <amt> --monthly-limit <amt> --max-txn <amt> --approval-threshold <amt>` | Create with all limits |
+| `npx @agentwallex/cli@latest approvals list --status pending`                                | List pending approvals          |
+| `npx @agentwallex/cli@latest approvals approve <id>`                                         | Approve a transaction           |
+| `npx @agentwallex/cli@latest approvals reject <id> --note "<reason>"`                        | Reject a transaction            |
 
 ## Example Session
 
@@ -102,7 +102,7 @@ Filter by agent: `npx @agentwallex/cli@0.1.1 policies list --agent <id>`.
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.1 policies create --agent agt_a1b2c3d4 --daily-limit 500
+npx @agentwallex/cli@latest policies create --agent agt_a1b2c3d4 --daily-limit 500
 ```
 
 Output:
@@ -124,7 +124,7 @@ A daily spending limit of $500 has been set for agent agt_a1b2c3d4.
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.1 approvals list --status pending
+npx @agentwallex/cli@latest approvals list --status pending
 ```
 
 Output:

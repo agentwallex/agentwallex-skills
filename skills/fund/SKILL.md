@@ -4,10 +4,10 @@ description: Allocate funds from main account to agents or collect funds back. U
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.1 status*)
-  - Bash(npx @agentwallex/cli@0.1.1 account *)
-  - Bash(npx @agentwallex/cli@0.1.1 balance *)
-  - Bash(npx @agentwallex/cli@0.1.1 agents list*)
+  - Bash(npx @agentwallex/cli@latest status*)
+  - Bash(npx @agentwallex/cli@latest account *)
+  - Bash(npx @agentwallex/cli@latest balance *)
+  - Bash(npx @agentwallex/cli@latest agents list*)
 ---
 
 # Fund Skill
@@ -44,9 +44,9 @@ The same interactive flow applies to `awx account collect`.
 
 ### Allocating Funds to an Agent
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status`.
+1. **Check connection status.** Run `npx @agentwallex/cli@latest status`.
 
-2. **Check the main account balance.** Run `npx @agentwallex/cli@0.1.1 account balance` to see available funds.
+2. **Check the main account balance.** Run `npx @agentwallex/cli@latest account balance` to see available funds.
 
 3. **Gather allocation details.** You need:
    - **Agent ID** (required): The agent to fund.
@@ -55,15 +55,15 @@ The same interactive flow applies to `awx account collect`.
 
 4. **Confirm with the user.** Display a summary of the allocation before proceeding.
 
-5. **Allocate funds.** Run `npx @agentwallex/cli@0.1.1 account allocate --agent <id> --token <token> --amount <amount>`.
+5. **Allocate funds.** Run `npx @agentwallex/cli@latest account allocate --agent <id> --token <token> --amount <amount>`.
 
-6. **Verify the allocation.** Run `npx @agentwallex/cli@0.1.1 balance <agent-id>` to confirm the agent received the funds.
+6. **Verify the allocation.** Run `npx @agentwallex/cli@latest balance <agent-id>` to confirm the agent received the funds.
 
 ### Collecting Funds from an Agent
 
-1. **Check the agent's balance.** Run `npx @agentwallex/cli@0.1.1 balance <agent-id>`.
+1. **Check the agent's balance.** Run `npx @agentwallex/cli@latest balance <agent-id>`.
 
-2. **Collect funds.** Run `npx @agentwallex/cli@0.1.1 account collect --agent <id> --token <token> --amount <amount>`.
+2. **Collect funds.** Run `npx @agentwallex/cli@latest account collect --agent <id> --token <token> --amount <amount>`.
 
 ## Input Validation
 
@@ -80,10 +80,10 @@ The same interactive flow applies to `awx account collect`.
 
 | Command                                                                                  | Description                              |
 |------------------------------------------------------------------------------------------|------------------------------------------|
-| `npx @agentwallex/cli@0.1.1 account balance`                                            | Check main account balance               |
-| `npx @agentwallex/cli@0.1.1 account allocate --agent <id> --token <tkn> --amount <amt>` | Allocate funds to an agent               |
-| `npx @agentwallex/cli@0.1.1 account collect --agent <id> --token <tkn> --amount <amt>`  | Collect funds back from an agent         |
-| `npx @agentwallex/cli@0.1.1 balance <agent-id>`                                         | Check agent balance after allocation     |
+| `npx @agentwallex/cli@latest account balance`                                            | Check main account balance               |
+| `npx @agentwallex/cli@latest account allocate --agent <id> --token <tkn> --amount <amt>` | Allocate funds to an agent               |
+| `npx @agentwallex/cli@latest account collect --agent <id> --token <tkn> --amount <amt>`  | Collect funds back from an agent         |
+| `npx @agentwallex/cli@latest balance <agent-id>`                                         | Check agent balance after allocation     |
 
 ## Example Session
 
@@ -94,7 +94,7 @@ The same interactive flow applies to `awx account collect`.
 Let me check the account balance first:
 
 ```bash
-npx @agentwallex/cli@0.1.1 account balance
+npx @agentwallex/cli@latest account balance
 ```
 
 Output:
@@ -115,7 +115,7 @@ Shall I proceed?
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.1 account allocate --agent agt_a1b2c3d4 --token USDC --amount 100
+npx @agentwallex/cli@latest account allocate --agent agt_a1b2c3d4 --token USDC --amount 100
 ```
 
 Output:

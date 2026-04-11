@@ -4,11 +4,11 @@ description: Get deposit addresses to receive crypto on any supported chain and 
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.1 status*)
-  - Bash(npx @agentwallex/cli@0.1.1 topup*)
-  - Bash(npx @agentwallex/cli@0.1.1 account deposit*)
-  - Bash(npx @agentwallex/cli@0.1.1 account balance*)
-  - Bash(npx @agentwallex/cli@0.1.1 balance *)
+  - Bash(npx @agentwallex/cli@latest status*)
+  - Bash(npx @agentwallex/cli@latest topup*)
+  - Bash(npx @agentwallex/cli@latest account deposit*)
+  - Bash(npx @agentwallex/cli@latest account balance*)
+  - Bash(npx @agentwallex/cli@latest balance *)
 ---
 
 # Topup Skill
@@ -48,20 +48,20 @@ In interactive mode, you will be prompted for:
 
 ## Steps
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status` to verify AgentWallex is configured.
+1. **Check connection status.** Run `npx @agentwallex/cli@latest status` to verify AgentWallex is configured.
 
 2. **Determine the chain and token.** Ask the user:
    - **Chain** (required): Which blockchain to receive funds on. Default to `base` if not specified.
    - **Token** (optional): `USDC` or `USDT`. Default to `USDC`.
 
-3. **Get the deposit address.** Run `npx @agentwallex/cli@0.1.1 topup --chain <chain> --token <token>` (or `npx @agentwallex/cli@0.1.1 account deposit --chain <chain> --token <token>`).
+3. **Get the deposit address.** Run `npx @agentwallex/cli@latest topup --chain <chain> --token <token>` (or `npx @agentwallex/cli@latest account deposit --chain <chain> --token <token>`).
 
 4. **Display the deposit address.** Show the address clearly and remind the user:
    - Only send the specified token on the specified chain.
    - Sending the wrong token or using the wrong chain may result in lost funds.
    - Deposits may take a few minutes to confirm on-chain.
 
-5. **Optionally check balance after deposit.** The user can verify funds arrived by running `npx @agentwallex/cli@0.1.1 account balance`.
+5. **Optionally check balance after deposit.** The user can verify funds arrived by running `npx @agentwallex/cli@latest account balance`.
 
 ## Input Validation
 
@@ -77,9 +77,9 @@ In interactive mode, you will be prompted for:
 
 | Command                                                                     | Description                          |
 |-----------------------------------------------------------------------------|--------------------------------------|
-| `npx @agentwallex/cli@0.1.1 topup --chain <chain> --token <tkn>`           | Get a deposit address                |
-| `npx @agentwallex/cli@0.1.1 topup --chain <chain> --json`                  | Get deposit address with JSON output |
-| `npx @agentwallex/cli@0.1.1 account balance`                               | Check account balance after deposit  |
+| `npx @agentwallex/cli@latest topup --chain <chain> --token <tkn>`           | Get a deposit address                |
+| `npx @agentwallex/cli@latest topup --chain <chain> --json`                  | Get deposit address with JSON output |
+| `npx @agentwallex/cli@latest account balance`                               | Check account balance after deposit  |
 
 ## Example Session
 
@@ -94,7 +94,7 @@ Which chain would you like to deposit on? Supported chains: Base, Ethereum, BSC,
 **Assistant:**
 
 ```bash
-npx @agentwallex/cli@0.1.1 topup --chain base --token USDC
+npx @agentwallex/cli@latest topup --chain base --token USDC
 ```
 
 Output:

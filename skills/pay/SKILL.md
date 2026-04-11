@@ -4,8 +4,8 @@ description: Make paid API calls via x402 or MPP protocol. Use when you or the u
 user-invocable: true
 disable-model-invocation: false
 allowed-tools:
-  - Bash(npx @agentwallex/cli@0.1.1 status*)
-  - Bash(npx @agentwallex/cli@0.1.1 balance *)
+  - Bash(npx @agentwallex/cli@latest status*)
+  - Bash(npx @agentwallex/cli@latest balance *)
   - Bash(curl *)
 ---
 
@@ -40,9 +40,9 @@ All `awx` commands support **interactive mode**. Running a command without argum
 
 ## Steps
 
-1. **Check connection status.** Run `npx @agentwallex/cli@0.1.1 status` to verify AgentWallex is configured.
+1. **Check connection status.** Run `npx @agentwallex/cli@latest status` to verify AgentWallex is configured.
 
-2. **Check the agent's balance.** Run `npx @agentwallex/cli@0.1.1 balance <agent-id>` to ensure sufficient funds.
+2. **Check the agent's balance.** Run `npx @agentwallex/cli@latest balance <agent-id>` to ensure sufficient funds.
 
 3. **Identify the paid endpoint.** The user should provide:
    - **URL** (required): The paid API endpoint.
@@ -79,8 +79,8 @@ All `awx` commands support **interactive mode**. Running a command without argum
 
 | Command                                                       | Description                          |
 |---------------------------------------------------------------|--------------------------------------|
-| `npx @agentwallex/cli@0.1.1 status`                          | Verify connection                    |
-| `npx @agentwallex/cli@0.1.1 balance <agent-id>`              | Check balance before paying          |
+| `npx @agentwallex/cli@latest status`                          | Verify connection                    |
+| `npx @agentwallex/cli@latest balance <agent-id>`              | Check balance before paying          |
 | `curl -s -i "<url>"`                                          | Test if an endpoint returns 402      |
 
 ## Example Session
@@ -92,7 +92,7 @@ All `awx` commands support **interactive mode**. Running a command without argum
 Let me check the agent's balance first:
 
 ```bash
-npx @agentwallex/cli@0.1.1 balance agt_a1b2c3d4
+npx @agentwallex/cli@latest balance agt_a1b2c3d4
 ```
 
 Output:
