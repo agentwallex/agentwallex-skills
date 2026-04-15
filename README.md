@@ -14,6 +14,7 @@
 | [fund](./skills/fund/SKILL.md) | Allocate or collect funds between main account and agents |
 | [policy](./skills/policy/SKILL.md) | Set spending limits, approval thresholds, and approve/reject transactions |
 | [pay](./skills/pay/SKILL.md) | Make paid API calls via x402 or MPP protocol |
+| [cards](./skills/cards/SKILL.md) | Issue and manage virtual cards for AI agents |
 
 ## Installation
 
