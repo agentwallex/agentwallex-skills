@@ -8,7 +8,7 @@ allowed-tools: ["Bash(npx @agentwallex/cli@0.9.0 cards *)", "Bash(npx @agentwall
 
 # Agent Virtual Cards
 
-Issue virtual Visa cards for AI agents. Each card is tied to an agent's balance and controlled by the Policy Engine.
+Issue virtual Visa cards for AI agents. Each agent can have **multiple cards**, each with its own spending limit and tag. Cards are tied to an agent's balance and controlled by the Policy Engine. The card provider is auto-resolved by the backend.
 
 ## Confirm wallet is connected
 
@@ -18,14 +18,18 @@ npx @agentwallex/cli@0.9.0 status
 
 If not configured, refer to the `setup` skill.
 
-## Issue a Card
+## Issue Cards
+
+An agent can have multiple cards with different limits and tags -- for example, one card for cloud services and another for SaaS subscriptions.
 
 ```bash
 # Interactive mode
 npx @agentwallex/cli@0.9.0 cards create <agent-id>
 
-# Direct mode
+# Direct mode — create multiple cards with different tags and limits
 npx @agentwallex/cli@0.9.0 cards create <agent-id> --limit 500 --tag "AWS"
+npx @agentwallex/cli@0.9.0 cards create <agent-id> --limit 100 --tag "SaaS subscriptions"
+npx @agentwallex/cli@0.9.0 cards create <agent-id> --limit 2000 --tag "Ad spend"
 ```
 
 The first time you issue a card, you'll be asked to set up cardholder information (name, address) for KYC verification. This only happens once.
